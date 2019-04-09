@@ -7,23 +7,7 @@ import PropTypes from 'prop-types';
 import {Players} from "./../imports/api/players";
 import TitleBar from "./../imports/ui/TitleBar";
 import AddPlayer from "./../imports/ui/AddPlayer";
-import Player from "./../imports/ui/Player"
-
-const renderPlayers = (playersList) => {
-  return playersList.map((player) => {
-    return <Player key={player._id} player={player}/>;
-    // return (
-    //   <p
-    //       key={player._id}>{player.name} has {player.score} point(s).
-    //       <button onClick={() => {
-    //         Players.update(player._id, {$inc: {score:-1}});}}>-1</button>
-    //       <button onClick={() => {
-    //         Players.update(player._id, {$inc: {score:1}});}}>+1</button>
-    //       <button onClick={() => Players.remove(player._id)}>X</button>
-    //   </p>
-    // );
-  });
-};
+import PlayerList from "./../imports/ui/PlayerList";
 
 Meteor.startup(() => {
   Tracker.autorun(() => {
@@ -32,7 +16,7 @@ Meteor.startup(() => {
     let jsx = (
       <div>
         <TitleBar title={title} subtitle="Created by Aj Gill"/>
-        {renderPlayers(players)}
+        <PlayerList players={players}/>
         <AddPlayer/>
       </div>
     );
